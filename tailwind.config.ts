@@ -10,14 +10,7 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                brand: {
-                    light: "#93C5FD",
-                    DEFAULT: "#3B82F6",
-                    dark: "#1E40AF",
-                },
-                primary: "#3498db",
-                customGreen: "#00C897",
-                customYellow: "#FFD365",
+                'neon-green': '#39FF14',
             },
         },
     },

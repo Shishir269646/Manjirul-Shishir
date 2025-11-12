@@ -1,10 +1,11 @@
-
+'use client';
 
 export default function Home() {
   return (
-    <div className="bg-brand text-white p-6 rounded-lg">
-      <h1 className="text-2xl text-customYellow">Custom Tailwind Colors</h1>
-      <p className="text-brand-light mt-2">Using TypeScript + Tailwind 🎉</p>
+    <div className="flex min-h-screen items-center justify-center font-sans dark:bg-black">
+      <div className="bg-[#01473C] text-6xl text-amber-500 p-4">
+        This background is neon-green!
+      </div>
     </div>
   );
 }
