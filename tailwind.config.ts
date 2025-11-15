@@ -1,19 +1,21 @@
-import type { Config } from "tailwindcss";
-
+// tailwind.config.ts
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
     content: [
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './components/**/*.{js,ts,jsx,tsx,mdx}',
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
             colors: {
-                'neon-green': '#39FF14',
+                // Add your custom colors here
+                "AquaDeep": "#014B43",
+                "Barberry": "#d5d52b",
             },
         },
     },
     plugins: [],
-};
-export default config;
+}
+export default config
