@@ -2,9 +2,11 @@
 
 
 import AboutSection from "@/components/AboutSection";
+import Contact from "@/components/Contact";
 import GlassmorphicProjectCard from "@/components/glassmorphic-project-card";
 import HeroSection from "@/components/HeroSection";
 import SkillsNetwork from "@/components/SkillsNetwork";
+import SocialMedia from "@/components/SocialMedia";
 import ZigzagWaveTimeline from "@/components/Timeline";
 
 
@@ -54,6 +56,8 @@ export default function Home() {
         />
       </div>
       <ZigzagWaveTimeline />
+      <Contact />
+      <SocialMedia />
       <SkillsNetwork />
     </main>
   );
