@@ -1,4 +1,8 @@
+"use client";
+
 import React from 'react';
+import aboutImg from '../app/public/images/mj.png';
+import Image from 'next/image';
 
 // NOTE: This component uses arbitrary Tailwind values (e.g., pt-[12px], right-[-25px]) 
 // and custom keyframe animations defined in the <style> block to fully replicate the original complex layout and styling.
@@ -79,9 +83,9 @@ const AboutSection = () => {
                                                        after:absolute after:content-[''] after:bg-white after:w-[65px] after:h-[65px] after:right-[-9%] after:top-[137px] after:rotate-[42deg] after:z-10"
                                         >
                                             <div className="relative z-10">
-                                                <img
+                                                <Image
                                                     className="rounded-xl relative z-10 w-full h-auto max-w-sm lg:max-w-md xl:max-w-none shadow-xl"
-                                                    src="https://thames-demo-nuxt.vercel.app/images/about/about-img.jpg"
+                                                    src={aboutImg}
                                                     alt="about image"
                                                     width={500}
                                                     height={600}
@@ -200,7 +204,7 @@ const AboutSection = () => {
                         <span className="inline-block">Manjirul</span>
                     </div>
 
-                    
+
                 </div>
             </div>
         </section>

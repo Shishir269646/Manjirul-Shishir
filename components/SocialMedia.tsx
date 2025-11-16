@@ -55,9 +55,10 @@ function SocialMedia() {
                     group 
                     bg-white
                     no-underline 
-                    block 
+                    items-center
+                     
                     w-[210px] h-20 
-                    rotate-[-30deg] skew-x-[25deg] 
+                    rotate-[-30deg] skew-x-25 
                     translate-x-0 translate-y-0 
                     transition-[0.5s] 
                     shadow-[-20px_20px_10px_rgba(0,0,0,0.5)] 
@@ -75,20 +76,15 @@ function SocialMedia() {
                     after:-left-2.5 after:-bottom-5 
                     after:bg-gray-300
                     
-                    hover:rotate-[-30deg] hover:skew-x-[25deg] 
+                    hover:rotate-[-30deg] hover:skew-x-25 
                     hover:translate-x-5 hover:translate-y-[-15px] 
                     hover:shadow-[-50px_50px_50px_rgba(0,0,0,0.5)] 
                     
-                    flex items-center
+                    flex justify-center
                   "
                                 >
                                     <IconComponent
-                                        className="
-                      h-10 w-10 
-                      text-AquaDeep
-                      transition-[0.5s] 
-                      group-hover:text-Barberry
-                    "
+                                        className="h-18 w-18 text-AquaDeep transition-[0.5s] group-hover:text-Barberry"
                                         strokeWidth={1.5}
                                     />
                                 </a>

@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen text-white font-sans">
 
-      {/* 🦋 Hero Section with Particles */}
+      {/*  Hero Section with Particles */}
       <HeroSection
         title="Welcome to Our Awesome App"
         subtitle="Experience the best features and seamless performance."
@@ -36,7 +36,7 @@ export default function Home() {
         mainImageSrc=""        // Optional main hero image
       />
 
-      {/* 💡 Other Sections Below */}
+      {/*  Other Sections Below */}
       <AboutSection />
 
       <div className="flex items-center justify-center min-h-screen relative overflow-hidden p-10">
