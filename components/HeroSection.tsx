@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { ChunkyShadowButton } from "@/components/ui/Buton"; // Assuming this path is correct
+import { ChunkyShadowButton } from "@/components/ui/Buton";
 import Image from "next/image";
-import heroimg from "../app/public/images/hero sideImg.png"; // Assuming this path is correct
+import heroimg from "../app/public/images/hero sideImg.png";
 import ParticlesBackground from "./animation/ParticlesBackground";
 
 interface HeroSectionProps {

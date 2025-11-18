@@ -149,7 +149,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
 
 export default function AllTimelinesDemo() {
     return (
-        <div className="space-y-32 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-950">
+        <div className="space-y-32 bg-AquaDeep from-white to-slate-50 dark:from-slate-900 dark:to-slate-950">
             <ZigzagWaveTimeline />
 
         </div>

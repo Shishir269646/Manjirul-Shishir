@@ -2,6 +2,7 @@
 
 import React, { useState, FormEvent } from "react";
 import { Home, Phone, Mail } from "lucide-react"; // ⬅ Lucide Icons
+import { ChunkyShadowButton } from "./ui/Buton";
 
 
 interface ContactInfoItem {
@@ -15,7 +16,7 @@ const contactInfoList: ContactInfoItem[] = [
         data: ["28/1 Shishir Bila", "Rajshahi, Bangladesh"],
     },
     {
-        icon: <Phone className="text-7xl opacity-[0.15] w-[80px]" />,
+        icon: <Phone className="text-7xl opacity-[0.15] w-20" />,
         data: ["+880 1303 186546", "+880 1727 132696"],
     },
     {
@@ -23,6 +24,25 @@ const contactInfoList: ContactInfoItem[] = [
         data: ["manjirul2696@gmail.com", "mjshishirf@.com"],
     },
 ];
+
+
+export const customAlert = (message: string) => {
+    const box = document.createElement("div");
+    box.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
+    box.innerHTML = `
+    <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm text-center border-4 border-black">
+      <p class="text-xl font-bold mb-4 text-gray-800">${message}</p>
+      <button id="close-message" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold border border-black transition-colors duration-150 ease-in-out">
+        Got It!
+      </button>
+    </div>
+  `;
+    document.body.appendChild(box);
+    document.getElementById("close-message")!.onclick = () =>
+        document.body.removeChild(box);
+};
+
+
 
 const ContactForm = () => {
     const [validated, setValidated] = useState(false);
@@ -75,12 +95,10 @@ const ContactForm = () => {
             </div>
 
             <div className="text-end">
-                <button
-                    type="submit"
-                    className="px-4 py-2 text-xl text-white transition rounded-md h-14 w-44 hover:bg-AquaDeep font-bold ring-2 ring-white"
-                >
+
+                <ChunkyShadowButton onClick={() => customAlert("Ordering!")}>
                     Send
-                </button>
+                </ChunkyShadowButton>
             </div>
         </form>
     );
@@ -90,7 +108,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="py-10 md:py-14 text-white overflow-hidden"
+            className="py-10 md:py-14 bg-AquaDeep text-white overflow-hidden"
         >
             <div className="container relative">
                 <div className="grid grid-cols-12">
@@ -102,7 +120,7 @@ const Contact = () => {
                                     <div className="items-center md:col-span-5 col-span-6">
                                         <address className="mt-5 pl-5">
                                             {contactInfoList.map((info, i) => (
-                                                <div className="flex items-center text-AquaDeep mb-8" key={i}>
+                                                <div className="flex items-center text-white mb-8" key={i}>
                                                     <div className="text-red-700 z-1">{info.icon}</div>
                                                     <div className="ml-[-26px]">
                                                         {info.data.map((row, j) => (
@@ -121,7 +139,7 @@ const Contact = () => {
                     </div>
 
                     {/* RIGHT SIDE FORM */}
-                    <div className="col-span-12 text-AquaDeep lg:col-span-6 xl:col-span-5 px-6 relative">
+                    <div className="col-span-12 text-white lg:col-span-6 xl:col-span-5 px-6 relative">
                         <div className="absolute bg-Barberry top-0 left-0 lg:-left-[20%] right-0 bottom-0 shadow-2xl rounded-tl rounded-tr-[30px] rounded-br-[150px] rounded-bl-[50px]"></div>
 
                         <div className="relative rounded my-12">

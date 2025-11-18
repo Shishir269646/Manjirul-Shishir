@@ -32,7 +32,7 @@ const socialIcons: SocialIcon[] = [
 function SocialMedia() {
     return (
         // Added bg-gray-900 so the white text h2 is visible
-        <div className="social-links p-18 m-16 bg-AquaDeep overflow-hidden">
+        <div className="social-links pt-26 pb-28 bg-AquaDeep overflow-hidden">
             <h2 className="font-bold pb-16 text-white text-center text-4xl md:text-[55px] leading-[45px] md:leading-[70px] mb-0">
                 Follow Me
             </h2>
