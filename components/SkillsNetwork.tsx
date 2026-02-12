@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-// ## Type Definitions
 interface Bounds {
   width: number;
   height: number;
@@ -36,7 +35,6 @@ interface NodeProps {
   logoUrl: string;
 }
 
-// Node class
 class Node {
   x: number;
   y: number;
@@ -140,21 +138,16 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-// ## Component
 const SkillsNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  useEffect(() => setIsClient(true), []);
 
   useEffect(() => {
     if (!isClient) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -286,12 +279,11 @@ const SkillsNetwork: React.FC = () => {
       bounds.height = canvas.height;
     }
 
+    // ✅ Non-null assertion (!) fixes TS errors
     function handleMouseDown(e: MouseEvent) {
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
+      const rect = canvas!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       nodes.forEach((n) => {
         if (n.isPointInside(x, y)) {
           draggedNode = n;
@@ -301,11 +293,10 @@ const SkillsNetwork: React.FC = () => {
     }
 
     function handleMouseMove(e: MouseEvent) {
-      if (!canvas || !draggedNode || !isDragging) return;
-      const rect = canvas.getBoundingClientRect();
+      if (!isDragging || !draggedNode) return;
+      const rect = canvas!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       draggedNode.targetX = Math.min(Math.max(x, draggedNode.radius), bounds.width - draggedNode.radius);
       draggedNode.targetY = Math.min(Math.max(y, draggedNode.radius), bounds.height - draggedNode.radius);
     }
