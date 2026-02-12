@@ -4,10 +4,15 @@ import { ChevronRight } from 'lucide-react';
 
 
 
+interface ChunkyShadowButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
 export const ChunkyShadowButton = ({
   children,
   onClick,
-}) => {
+}: ChunkyShadowButtonProps) => {
   return (
     <button
       onClick={onClick}

@@ -30,7 +30,7 @@ export const customAlert = (message: string) => {
     const box = document.createElement("div");
     box.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
     box.innerHTML = `
-    <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm text-center border-4 border-black">
+<div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm text-center border-4 border-black">
       <p class="text-xl font-bold mb-4 text-gray-800">${message}</p>
       <button id="close-message" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold border border-black transition-colors duration-150 ease-in-out">
         Got It!

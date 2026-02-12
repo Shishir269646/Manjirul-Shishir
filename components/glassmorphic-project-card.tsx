@@ -1,4 +1,4 @@
-// components/glassmorphic-project-card.tsx
+
 "use client";
 
 import React from 'react';

@@ -39,8 +39,8 @@ const SAMPLE: TimelineItem[] = [
         id: "t1",
         type: "experience",
         title: "Senior Frontend Developer",
-        org: "TechNova Ltd.",
-        period: "2023 - Present",
+        org: "Programming hero",
+        period: "2021 - 2022",
         desc: "Built scalable UI systems with Next.js and modern patterns.",
     },
     {
@@ -54,19 +54,14 @@ const SAMPLE: TimelineItem[] = [
     {
         id: "t3",
         type: "experience",
-        title: "Frontend Intern",
-        org: "SoftByte Solutions",
-        period: "2022",
-        desc: "Implemented dashboards, charts and micro-interactions.",
+        title: "WordPress Developer",
+        org: "LeraningIT BD",
+        period: "2020 - 2021",
+        desc: "Customized WordPress themes and plugins for clients, improving site performance and SEO.",
     },
 ];
 
 
-/* ==================================================================
-   B) Zigzag Wave Timeline
-   - An SVG wave path with items positioned along its curve.
-   - Path draws on scroll, nodes pulse and cards animate from random directions.
-   ================================================================== */
 
 export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] }) {
     const ref = useRef<HTMLDivElement | null>(null);
@@ -120,7 +115,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
                 </svg>
 
                 <div className="mt-8  grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {data.map((it, i) => (
+                    {data.map((it) => (
                         <div key={it.id} className="zw-node flex flex-col items-start zw-relative">
                             <div className="zw-dot w-6 h-6 rounded-full bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg border-2 border-white mb-4" />
 

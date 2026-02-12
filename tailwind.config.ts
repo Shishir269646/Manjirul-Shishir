@@ -11,8 +11,11 @@ const config: Config = {
         extend: {
             colors: {
                 // Add your custom colors here
-                "AquaDeep": "#014B43",
-                "Barberry": "#d5d52b",
+                "AquaDeep": "hsl(var(--color-aqua-deep))",
+                "Barberry": "hsl(var(--color-barberry))",
+                borderColor: "var(--border)",
+                background: "var(--background)",
+                foreground: "var(--foreground)",
             },
         },
     },

@@ -4,6 +4,7 @@
 import AboutSection from "@/components/AboutSection";
 import Contact from "@/components/Contact";
 import GlassmorphicProjectCard from "@/components/glassmorphic-project-card";
+import GlitchTerminal from "@/components/GlitchTerminal";
 import HeroSection from "@/components/HeroSection";
 import SkillsNetwork from "@/components/SkillsNetwork";
 import SocialMedia from "@/components/SocialMedia";
@@ -59,6 +60,10 @@ export default function Home() {
       <Contact />
       <SocialMedia />
       <SkillsNetwork />
+      <GlitchTerminal
+        text="SHISHIR"
+        accentColor="#ff4081"
+      />
     </main>
   );
 }
