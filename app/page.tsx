@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 import GlassmorphicProjectCard from "@/components/glassmorphic-project-card";
 import GlitchTerminal from "@/components/GlitchTerminal";
 import HeroSection from "@/components/HeroSection";
-import SkillsNetwork from "@/components/SkillsNetwork";
+import SkillCircle from "@/components/SkillCircle";
 import SocialMedia from "@/components/SocialMedia";
 import ZigzagWaveTimeline from "@/components/Timeline";
 
@@ -59,7 +59,12 @@ export default function Home() {
       <ZigzagWaveTimeline />
       <Contact />
       <SocialMedia />
-      <SkillsNetwork />
+      <SkillCircle
+        skillName="React"
+        percentage={90}
+        gradientFrom="#00c9ff"
+        gradientTo="#92fe9d"
+      />
       <GlitchTerminal
         text="SHISHIR"
         accentColor="#ff4081"
