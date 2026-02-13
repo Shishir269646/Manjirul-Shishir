@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import SectionHeader from './SectionHeader';
 
 interface InfoItemProps {
     label: string;
@@ -18,20 +19,26 @@ const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
 const AboutSection = () => {
     // Static content properties
     const person = {
-        name: "Bruce Wayne",
-        age: "35 Years",
-        occupation: "Software Architect",
-        phone: "+123 456 7890",
-        email: "hello@thames.com",
-        nationality: "American",
-        company: "Google Inc."
+        name: "Manjirul Islam Shishir",
+        age: "27 Years",
+        occupation: "Full-Stack Developer",
+        phone: "+880 1303-186546",
+        email: "mjshishirf@gmail.com",
+        nationality: "Bangladeshi",
+        company: "Freelancer",
     };
 
     // Component Rendering
     return (
         <section id="about" className="min-h-screen bg-background text-foreground font-inter theme-red">
             <div className="overflow-hidden">
-                <div className="mt-[170px] mb-[110px] relative">
+                <SectionHeader
+                    title="About Me"
+                    subtitle="Who I Am"
+                    align="center"
+                    aqua
+                />
+                <div className="mt-16 mb-36 relative">
                     <div className="container mx-auto px-4">
                         <div className="flex flex-wrap -mx-3">
 
@@ -94,26 +101,22 @@ const AboutSection = () => {
                                 <div className="relative mb-[50px]">
                                     <div>
                                         <div className="title">
-                                            <span
-                                                className="text-AquaDeep dark:text-Barberry uppercase block mb-1 mt-[-5px] tracking-widest font-bold"
-                                            >
-                                                About Me
-                                            </span>
+
+
                                             <h2 className="mb-[30px] text-4xl font-bold text-AquaDeep dark:text-foreground">
-                                                I Develop Systems that Work
+                                                I’m a Full-Stack Developer specializing in Next.js 15 and Tailwind CSS 4.
                                             </h2>
                                         </div>
                                     </div>
 
                                     <p className="mb-6 text-AquaDeep dark:text-gray-300 leading-relaxed">
-                                        Excepteur sint occaecat cupidatat non proident, sunt in
-                                        culpa qui officia deserunt mollit anim id est laboru
-                                        doloremque laudantium, totaeaque ipsa quae ab illo inventore
-                                        veritatis et quasi architecto beatae vitae.
+                                        Hi, I’m Manjirul Islam Shishir, a Full-Stack Developer driven by performance and innovation. While the web moves fast, I move faster—specializing in the latest iterations of Next.js 15 and Tailwind CSS 4.
+
+                                        I don’t just build websites; I build digital experiences. From developing an AI-powered personalization SDK (BehaveIQ) to architecting a Headless CMS (Headly), my focus is always on scalability, security, and speed. I bridge the gap between complex backend logic and pixel-perfect frontend aesthetics.
+
+                                        When I’m not coding, I’m exploring system architectures or optimizing cloud deployments on AWS. Let’s build something that stands out.
                                     </p>
-                                    <p className="text-AquaDeep dark:text-gray-300 leading-relaxed">
-                                        Oremque laudantium, totaeaque ipsa quae
-                                    </p>
+
 
                                     {/* Info Wrapper */}
                                     <div

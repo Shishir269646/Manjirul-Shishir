@@ -1,14 +1,13 @@
-
 "use client";
 
-import React from 'react';
+import React from "react";
 import {
     Card,
     CardContent,
     CardFooter,
     CardHeader,
     CardTitle,
-    CardDescription
+    CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -24,22 +23,22 @@ interface GlassmorphicProjectCardProps {
     githubUrl: string;
 }
 
-function GlassmorphicProjectCard({
+const GlassmorphicProjectCard: React.FC<GlassmorphicProjectCardProps> = ({
     imageUrl,
     title,
     description,
     techStack,
     liveUrl,
-    githubUrl
-}: GlassmorphicProjectCardProps) {
+    githubUrl,
+}) => {
     return (
         <Card
-            className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg 
-                       bg-white/10 backdrop-blur-xl border border-white/20 text-white 
-                       transition-all duration-500 ease-out 
-                       hover:shadow-3xl hover:border-white/50 group"
+            className="w-full rounded-2xl overflow-hidden shadow-lg
+                 bg-white/10 backdrop-blur-xl border border-white/20 text-white
+                 transition-all duration-500 ease-out
+                 hover:shadow-3xl hover:border-white/50 group"
         >
-            {/* Layer 1: Thumbnail Image (Now h-[200px] with Blending Gradient) */}
+            {/* Thumbnail Image */}
             <CardHeader className="p-0 h-[200px] relative overflow-hidden">
                 <Image
                     src={imageUrl}
@@ -47,15 +46,12 @@ function GlassmorphicProjectCard({
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
-                {/* Image Blending Overlay: Softens the transition into the content area */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </CardHeader>
 
-            {/* Layer 2: Content (Glass Effect) */}
-            <CardContent className="p-6">
-                <CardTitle className="text-2xl font-bold mb-2">
-                    {title}
-                </CardTitle>
+            {/* Content */}
+            <CardContent className="p-2">
+                <CardTitle className="text-2xl font-bold mb-2">{title}</CardTitle>
                 <CardDescription className="text-sm text-white/80 mb-4 h-10 overflow-hidden">
                     {description}
                 </CardDescription>
@@ -74,8 +70,8 @@ function GlassmorphicProjectCard({
                 </div>
             </CardContent>
 
-            {/* Layer 3: Buttons */}
-            <CardFooter className="flex gap-4 p-6 pt-0">
+            {/* Buttons */}
+            <CardFooter className="flex flex-col sm:flex-row gap-1 sm:gap-4 p-2 pt-0">
                 <Button
                     asChild
                     size="sm"
@@ -98,6 +94,6 @@ function GlassmorphicProjectCard({
             </CardFooter>
         </Card>
     );
-}
+};
 
 export default GlassmorphicProjectCard;
