@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
-import { Home, Phone, Mail } from "lucide-react"; // ⬅ Lucide Icons
+import { Home, Phone, Mail } from "lucide-react";
 import { ChunkyShadowButton } from "./ui/Buton";
-
 
 interface ContactInfoItem {
     icon: React.ReactNode;
@@ -12,156 +11,148 @@ interface ContactInfoItem {
 
 const contactInfoList: ContactInfoItem[] = [
     {
-        icon: <Home className="text-7xl opacity-[0.15] w-[80px]" />,
+        icon: <Home className="w-8 h-8" />,
         data: ["28/1 Shishir Bila", "Rajshahi, Bangladesh"],
     },
     {
-        icon: <Phone className="text-7xl opacity-[0.15] w-20" />,
+        icon: <Phone className="w-8 h-8" />,
         data: ["+880 1303 186546", "+880 1727 132696"],
     },
     {
-        icon: <Mail className="text-7xl opacity-[0.15] w-[80px]" />,
+        icon: <Mail className="w-8 h-8" />,
         data: ["manjirul2696@gmail.com", "mjshishirf@.com"],
     },
 ];
 
-
-export const customAlert = (message: string) => {
-    const box = document.createElement("div");
-    box.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
-    box.innerHTML = `
-<div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm text-center border-4 border-black">
-      <p class="text-xl font-bold mb-4 text-gray-800">${message}</p>
-      <button id="close-message" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold border border-black transition-colors duration-150 ease-in-out">
-        Got It!
-      </button>
-    </div>
-  `;
-    document.body.appendChild(box);
-    document.getElementById("close-message")!.onclick = () =>
-        document.body.removeChild(box);
-};
-
-
-
-const ContactForm = () => {
+const Contact = () => {
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        const form = event.currentTarget as HTMLFormElement;
+        const form = event.currentTarget;
 
         if (!form.checkValidity()) {
             event.stopPropagation();
+        } else {
+            alert("Message Sent Successfully!");
+            form.reset();
         }
 
         setValidated(true);
     };
 
     return (
-        <form
-            className="md:pr-12"
-            noValidate
-            data-validated={validated}
-            onSubmit={handleSubmit}
-        >
-            <div className="mb-4">
-                <input
-                    type="text"
-                    required
-                    className="min-h-[48px] leading-[48px] border border-transparent rounded-xl focus:outline-none focus:border focus:border-white w-full px-5"
-                    placeholder="Enter Name"
-                />
-            </div>
+        <section className="relative py-24 bg-AquaDeep text-white overflow-hidden">
 
-            <div className="mb-4">
-                <input
-                    type="email"
-                    required
-                    className="min-h-12 leading-12 border border-transparent rounded-xl focus:outline-none focus:border focus:border-white w-full px-5"
-                    placeholder="Enter Email"
-                />
-            </div>
+            {/* Background Glows */}
+            <div className="absolute -top-60 -left-60 w-[500px] h-[500px] bg-cyan-400/20 blur-[150px] rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-60 -right-60 w-[500px] h-[500px] bg-yellow-400/20 blur-[150px] rounded-full animate-pulse"></div>
 
-            <div className="mb-4">
-                <textarea
-                    name="message"
-                    required
-                    className="min-h-12 leading-12 border border-transparent rounded-xl focus:outline-none focus:border focus:border-white w-full px-5"
-                    placeholder="Enter Message"
-                    rows={4}
-                ></textarea>
-            </div>
+            <div className="container relative z-10">
+                <div className="relative flex flex-col lg:flex-row items-stretch">
 
-            <div className="text-end">
+                    {/* LEFT CARD */}
+                    <div className="
+            lg:w-1/2
+            bg-gradient-to-br from-white/10 via-white/5 to-white/10
+            backdrop-blur-2xl border border-white/20 shadow-2xl
+            rounded-[50px]
+            p-12
+            lg:-mb-12 lg:z-20
+            transform transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02]
+          ">
 
-                <ChunkyShadowButton onClick={() => customAlert("Ordering!")}>
-                    Send
-                </ChunkyShadowButton>
-            </div>
-        </form>
-    );
-};
+                        <h2 className="font-extrabold text-5xl md:text-6xl bg-gradient-to-r from-yellow-400 to-cyan-400 bg-clip-text text-transparent">
+                            Stay In Touch
+                        </h2>
 
-const Contact = () => {
-    return (
-        <section
-            id="contact"
-            className="py-10 md:py-14 bg-AquaDeep text-white overflow-hidden"
-        >
-            <div className="container relative">
-                <div className="grid grid-cols-12">
-                    {/* LEFT SIDE INFO */}
-                    <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-0">
-                        <div className="h-full flex items-center">
-                            <div className="max-w-full bg-Barberry shadow-2xl h-2/3 relative z-2 rounded-tr-[100px] rounded-br rounded-bl-[100px] mx-auto">
-                                <div className="grid grid-cols-12">
-                                    <div className="items-center md:col-span-5 col-span-6">
-                                        <address className="mt-5 pl-5">
-                                            {contactInfoList.map((info, i) => (
-                                                <div className="flex items-center text-white mb-8" key={i}>
-                                                    <div className="text-red-700 z-1">{info.icon}</div>
-                                                    <div className="ml-[-26px]">
-                                                        {info.data.map((row, j) => (
-                                                            <p className="tracking-widest not-italic mb-0" key={j}>
-                                                                {row}
-                                                            </p>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </address>
+                        <p className="mt-4 text-sm uppercase tracking-widest text-white/80 mb-12">
+                            Have any question? Drop us a message.
+                        </p>
+
+                        <div className="space-y-8">
+                            {contactInfoList.map((info, i) => (
+                                <div key={i} className="flex items-start gap-5 group">
+                                    <div className="
+                    bg-white/20 p-4 rounded-xl group-hover:bg-gradient-to-tr from-yellow-400 to-cyan-400 group-hover:text-black transition-all duration-300 shadow-md
+                  ">
+                                        {info.icon}
+                                    </div>
+                                    <div>
+                                        {info.data.map((row, j) => (
+                                            <p key={j} className="text-sm tracking-widest text-white/90">
+                                                {row}
+                                            </p>
+                                        ))}
                                     </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* RIGHT SIDE FORM */}
-                    <div className="col-span-12 text-white lg:col-span-6 xl:col-span-5 px-6 relative">
-                        <div className="absolute bg-Barberry top-0 left-0 lg:-left-[20%] right-0 bottom-0 shadow-2xl rounded-tl rounded-tr-[30px] rounded-br-[150px] rounded-bl-[50px]"></div>
-
-                        <div className="relative rounded my-12">
-                            <div className="mb-12">
-                                <div className="col-span-12 w-full text-center sm:text-start mb-12">
-                                    <h2 className="font-bold text-4xl text-center md:text-[55px] leading-[45px] md:leading-[70px] mb-0">
-                                        Stay In Touch
-                                    </h2>
-                                    <div className="w-40 h-1 items-center bg-AquaDeep my-10 mx-auto mb-16"></div>
-                                    <p className="text-sm leading-7 font-normal uppercase tracking-widest opacity-90 md:ml-[5%]">
-                                        Have any question? Drop us a message.
-                                    </p>
-                                </div>
+                    {/* RIGHT CARD */}
+                    <div className="
+            lg:w-1/2
+            bg-gradient-to-br from-white/10 via-white/5 to-white/10
+            backdrop-blur-2xl border border-white/20 shadow-2xl
+            rounded-[50px]
+            p-12
+            lg:mt-12 lg:-ml-10
+            relative z-10
+            transform transition-all duration-500 hover:translate-y-3 hover:scale-[1.02]
+          ">
+                        <form
+                            className="space-y-6"
+                            onSubmit={handleSubmit}
+                            noValidate
+                            data-validated={validated}
+                        >
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="Enter Name"
+                                    className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                />
+                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                    Name
+                                </label>
                             </div>
 
-                            <ContactForm />
-                        </div>
+                            <div className="relative">
+                                <input
+                                    type="email"
+                                    required
+                                    placeholder="Enter Email"
+                                    className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                />
+                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                    Email
+                                </label>
+                            </div>
+
+                            <div className="relative">
+                                <textarea
+                                    required
+                                    rows={4}
+                                    placeholder="Enter Message"
+                                    className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                ></textarea>
+                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                    Message
+                                </label>
+                            </div>
+
+                            <div className="text-end">
+                                <ChunkyShadowButton>
+                                    Send Message
+                                </ChunkyShadowButton>
+                            </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
-
-
         </section>
     );
 };

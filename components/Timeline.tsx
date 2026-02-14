@@ -105,8 +105,8 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
     }, []);
 
     return (
-        <section ref={ref} className="relative bg-Barberry max-w-6xl mx-auto py-24 px-6">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8">Zigzag Wave Timeline</h2>
+        <section ref={ref} className="">
+            
 
             <div className="relative">
                 {/* SVG Wave (decorative) */}
@@ -114,10 +114,10 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
                     <path className="zw-path stroke-emerald-400/80 dark:stroke-emerald-300/70" d="M0,100 C200,0 400,200 600,100 C800,0 1000,200 1200,100" fill="none" strokeWidth={3} strokeLinecap="round" />
                 </svg>
 
-                <div className="mt-8  grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2">
                     {data.map((it) => (
                         <div key={it.id} className="zw-node flex flex-col items-start zw-relative">
-                            <div className="zw-dot w-6 h-6 rounded-full bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg border-2 border-white mb-4" />
+                            <div className="zw-dot w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg border-2 border-white mb-4" />
 
                             <div className="zw-card bg-AquaDeep dark:bg-slate-900 p-5 rounded-xl shadow-lg border border-slate-100/40">
                                 <div className="flex items-center gap-3">
@@ -144,7 +144,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
 
 export default function AllTimelinesDemo() {
     return (
-        <div className="space-y-32 bg-AquaDeep from-white to-slate-50 dark:from-slate-900 dark:to-slate-950">
+        <div className="">
             <ZigzagWaveTimeline />
 
         </div>

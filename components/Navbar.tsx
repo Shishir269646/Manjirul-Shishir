@@ -17,7 +17,7 @@ export function Navbar() {
         <Link href="#skills">
           <Button variant="ghost">Skills</Button>
         </Link>
-        <Link href="#projects">
+        <Link href="#project">
           <Button variant="ghost">Projects</Button>
         </Link>
         <Link href="#contact">
