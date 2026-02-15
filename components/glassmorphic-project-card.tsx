@@ -51,7 +51,7 @@ const GlassmorphicProjectCard: React.FC<GlassmorphicProjectCardProps> = ({
 
             {/* Content */}
             <CardContent className="p-2">
-                <CardTitle className="text-2xl font-bold mb-2">{title}</CardTitle>
+                <CardTitle className="text-2xl font-bold mb-2 text-black">{title}</CardTitle>
                 <CardDescription className="text-sm text-white/80 mb-4 h-10 overflow-hidden">
                     {description}
                 </CardDescription>

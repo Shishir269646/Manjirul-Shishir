@@ -11,8 +11,8 @@ interface InfoItemProps {
 
 const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
     <li className="flex mb-3">
-        <p className="font-medium text-AquaDeep dark:text-gray-300 w-1/2">{label}</p>
-        <p className="font-medium text-AquaDeep dark:text-gray-300 w-1/2">{value}</p>
+        <p className="font-medium text-AquaDeep w-1/2">{label}</p>
+        <p className="font-medium text-AquaDeep w-1/2">{value}</p>
     </li>
 );
 
@@ -88,7 +88,7 @@ const AboutSection = () => {
                                                     className="absolute w-full h-full inset-0 transition duration-500 rounded-full bg-AquaDeep dark:bg-gray-700"
                                                     aria-label="Download CV"
                                                 >
-                                                    <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                                    <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                                 </a>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@ const AboutSection = () => {
                                         </div>
                                     </div>
 
-                                    <p className="mb-6 text-AquaDeep dark:text-gray-300 leading-relaxed">
+                                    <p className="mb-6 text-AquaDeep dark:text-foreground leading-relaxed">
                                         Hi, I’m Manjirul Islam Shishir, a Full-Stack Developer driven by performance and innovation. While the web moves fast, I move faster—specializing in the latest iterations of Next.js 15 and Tailwind CSS 4.
 
                                         I don’t just build websites; I build digital experiences. From developing an AI-powered personalization SDK (BehaveIQ) to architecting a Headless CMS (Headly), my focus is always on scalability, security, and speed. I bridge the gap between complex backend logic and pixel-perfect frontend aesthetics.

@@ -105,21 +105,7 @@ const SkillCircle: React.FC<SkillCircleProps> = ({
                     </svg>
                 </span>
             </div>
-
-            {/* Global Styles */}
-            <style jsx>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body {
-          background: #e3edf7;
-        }
-        .skill {
-          display: inline-block;
-        }
-      `}</style>
+            {/* The global style block is no longer needed as body background is handled by globals.css */}
         </>
     );
 };

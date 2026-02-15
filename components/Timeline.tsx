@@ -119,7 +119,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
                         <div key={it.id} className="zw-node flex flex-col items-start zw-relative">
                             <div className="zw-dot w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg border-2 border-white mb-4" />
 
-                            <div className="zw-card bg-AquaDeep dark:bg-slate-900 p-5 rounded-xl shadow-lg border border-slate-100/40">
+                            <div className="zw-card bg-AquaDeep p-5 rounded-xl shadow-lg border border-slate-100/40">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded bg-slate-100/40">
                                         {it.type === 'experience' ? <Briefcase className="w-4 h-4" /> : <GraduationCap className="w-4 h-4" />}
@@ -127,7 +127,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
                                     <div>
                                         <h3 className="font-semibold">{it.title}</h3>
                                         <p className="text-sm opacity-70">{it.org}</p>
-                                        <p className="text-xs font-medium text-amber-500">{it.period}</p>
+                                        <p className="text-xs font-medium text-Barberry">{it.period}</p>
                                     </div>
                                 </div>
                                 <p className="mt-3 text-sm opacity-90">{it.desc}</p>

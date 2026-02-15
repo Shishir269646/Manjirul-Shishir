@@ -25,20 +25,54 @@ const contactInfoList: ContactInfoItem[] = [
 ];
 
 const Contact = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
     const [validated, setValidated] = useState(false);
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [responseMessage, setResponseMessage] = useState("");
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
 
         if (!form.checkValidity()) {
             event.stopPropagation();
-        } else {
-            alert("Message Sent Successfully!");
-            form.reset();
+            setValidated(true);
+            return;
         }
 
-        setValidated(true);
+        setStatus("loading");
+        setResponseMessage("");
+        setValidated(false); // Reset validation state for next submission attempt
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, message }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                setStatus("success");
+                setResponseMessage(data.message || "Message sent successfully!");
+                // Clear form fields
+                setName("");
+                setEmail("");
+                setMessage("");
+            } else {
+                setStatus("error");
+                setResponseMessage(data.message || "Failed to send message. Please try again.");
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            setStatus("error");
+            setResponseMessage("An unexpected error occurred. Please try again later.");
+        }
     };
 
     return (
@@ -110,11 +144,14 @@ const Contact = () => {
                             <div className="relative">
                                 <input
                                     type="text"
+                                    id="name"
                                     required
                                     placeholder="Enter Name"
                                     className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                 />
-                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                <label htmlFor="name" className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
                                     Name
                                 </label>
                             </div>
@@ -122,30 +159,46 @@ const Contact = () => {
                             <div className="relative">
                                 <input
                                     type="email"
+                                    id="email"
                                     required
                                     placeholder="Enter Email"
                                     className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
-                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                <label htmlFor="email" className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
                                     Email
                                 </label>
                             </div>
 
                             <div className="relative">
                                 <textarea
+                                    id="message"
                                     required
                                     rows={4}
                                     placeholder="Enter Message"
                                     className="w-full px-5 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 peer"
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
                                 ></textarea>
-                                <label className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
+                                <label htmlFor="message" className="absolute left-5 top-3 text-white/70 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/70 peer-placeholder-shown:text-base peer-focus:top-[-0.6rem] peer-focus:text-yellow-400 peer-focus:text-sm transition-all">
                                     Message
                                 </label>
                             </div>
 
+                            {responseMessage && (
+                                <div
+                                    className={`p-3 rounded-xl text-center ${status === "success"
+                                            ? "bg-green-500/20 text-green-400"
+                                            : "bg-red-500/20 text-red-400"
+                                        }`}
+                                >
+                                    {responseMessage}
+                                </div>
+                            )}
                             <div className="text-end">
-                                <ChunkyShadowButton>
-                                    Send Message
+                                <ChunkyShadowButton type="submit" disabled={status === "loading"}>
+                                    {status === "loading" ? "Sending..." : "Send Message"}
                                 </ChunkyShadowButton>
                             </div>
                         </form>
