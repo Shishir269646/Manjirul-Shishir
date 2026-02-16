@@ -6,28 +6,27 @@ import Link from "next/link";
 // Removed: import SocialMedia from "./SocialMedia";
 import clsx from "clsx";
 import {
-    Facebook,
-    Instagram,
-    Twitter,
-    Youtube,
-    Linkedin,
-    Github,
-    type LucideIcon,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Linkedin,
+  Github,
+  type LucideIcon,
 } from 'lucide-react';
+import Image from "next/image"; // Import Image component
 
 interface SocialIcon {
-    name: string;
-    icon: LucideIcon;
-    href: string;
+  name: string;
+  icon: LucideIcon;
+  href: string;
 }
 
 const socialIcons: SocialIcon[] = [
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'Twitter', icon: Twitter, href: '#' },
-    { name: 'Youtube', icon: Youtube, href: '#' },
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
-    { name: 'Github', icon: Github, href: '#' },
+  { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/mjshishir99' },
+  { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/mjshishir2696' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/manjirulislamshishir' },
+  { name: 'Github', icon: Github, href: 'https://github.com/Shishir269646' },
 ];
 
 export function Footer() {
@@ -45,8 +44,9 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center md:justify-between space-y-8 md:space-y-0">
           {/* Logo/Brand */}
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-cyan-400 bg-clip-text text-transparent">
-            Manjirul Shishir
+          <Link href="/" className="flex items-center space-x-2">
+            <Image src="/images/logo.png" alt="Manjirul Shishir Logo" width={80} height={80} />
+
           </Link>
 
           {/* Navigation Links */}
@@ -68,17 +68,17 @@ export function Footer() {
           {/* Social Media Icons */}
           <div className="flex space-x-4">
             {socialIcons.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                    <a
-                        key={item.name}
-                        href={item.href}
-                        aria-label={`Follow me on ${item.name}`}
-                        className="text-white hover:text-cyan-400 transition-colors duration-300"
-                    >
-                        <IconComponent className="h-6 w-6" />
-                    </a>
-                );
+              const IconComponent = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  aria-label={`Follow me on ${item.name}`}
+                  className="text-white hover:text-cyan-400 transition-colors duration-300"
+                >
+                  <IconComponent className="h-6 w-6" />
+                </a>
+              );
             })}
           </div>
         </div>

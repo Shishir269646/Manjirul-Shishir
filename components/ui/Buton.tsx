@@ -6,9 +6,9 @@ import { ChevronRight } from 'lucide-react';
 
 interface ChunkyShadowButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
-  type?: "button" | "submit" | "reset"; // Added type prop
-  disabled?: boolean; // Added disabled prop
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void; // Modified to pass event
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export const ChunkyShadowButton = ({

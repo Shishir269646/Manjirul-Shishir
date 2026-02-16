@@ -67,45 +67,51 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
     const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const path = document.querySelector('.zw-path') as SVGPathElement;
-            const length = path ? path.getTotalLength() : 0;
-
-            if (path) {
-                // start with hidden path
-                path.style.strokeDasharray = String(length);
-                path.style.strokeDashoffset = String(length);
-
-                gsap.to(path, {
-                    strokeDashoffset: 0,
-                    duration: 1.6,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: path,
-                        start: 'top 90%',
-                    }
+        let ctx: gsap.Context;
+        const timeoutId = setTimeout(() => {
+            ctx = gsap.context(() => {
+                const path = document.querySelector('.zw-path') as SVGPathElement;
+                const length = path ? path.getTotalLength() : 0;
+    
+                if (path) {
+                    // start with hidden path
+                    path.style.strokeDasharray = String(length);
+                    path.style.strokeDashoffset = String(length);
+    
+                    gsap.to(path, {
+                        strokeDashoffset: 0,
+                        duration: 1.6,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: path,
+                            start: 'top 90%',
+                        }
+                    });
+                }
+    
+                // nodes + cards animation
+                gsap.utils.toArray<HTMLDivElement>('.zw-node').forEach((node, i) => {
+                    const card = node.querySelector('.zw-card') as HTMLElement;
+                    const dir = (Math.random() > 0.5) ? -60 : 60;
+                    gsap.fromTo(card, { autoAlpha: 0, x: dir, y: 20 }, {
+                        autoAlpha: 1, x: 0, y: 0, duration: 1, ease: 'power3.out',
+                        scrollTrigger: { trigger: node, start: 'top 85%' }
+                    });
+    
+                    // pulse dot
+                    gsap.to(node.querySelector('.zw-dot'), { scale: 1.25, duration: 0.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * 0.12 });
                 });
-            }
+            }, ref);
+        }, 0); // Defer to the next microtask/event loop cycle
 
-            // nodes + cards animation
-            gsap.utils.toArray<HTMLDivElement>('.zw-node').forEach((node, i) => {
-                const card = node.querySelector('.zw-card') as HTMLElement;
-                const dir = (Math.random() > 0.5) ? -60 : 60;
-                gsap.fromTo(card, { autoAlpha: 0, x: dir, y: 20 }, {
-                    autoAlpha: 1, x: 0, y: 0, duration: 1, ease: 'power3.out',
-                    scrollTrigger: { trigger: node, start: 'top 85%' }
-                });
-
-                // pulse dot
-                gsap.to(node.querySelector('.zw-dot'), { scale: 1.25, duration: 0.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * 0.12 });
-            });
-        }, ref);
-
-        return () => ctx.revert();
+        return () => {
+            clearTimeout(timeoutId);
+            if (ctx) ctx.revert();
+        };
     }, []);
 
     return (
-        <section ref={ref} className="">
+        <section ref={ref} className=" px-4 sm:px-6 lg:px-8">
             
 
             <div className="relative">

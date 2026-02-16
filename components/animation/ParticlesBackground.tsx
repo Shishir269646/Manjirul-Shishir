@@ -24,7 +24,7 @@ const ParticlesBackground: React.FC = () => {
 
     // Optional: Called when particles are loaded
     const particlesLoaded = async (container?: Container): Promise<void> => {
-        console.log("Particles container loaded:", container);
+        // console.log("Particles container loaded:", container); // Removed to prevent SecurityError
     };
 
     // Particle configuration options
@@ -85,7 +85,7 @@ const ParticlesBackground: React.FC = () => {
                     density: {
                         enable: true,
                     },
-                    value: 80,
+                    value: 40, // Reduced particle count for performance
                 },
                 opacity: {
                     value: 0.5,

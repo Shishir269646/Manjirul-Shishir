@@ -8,17 +8,20 @@ import { Footer } from "@/components/Footer"; // Import the Footer component
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap', // Explicitly set font-display to swap
 });
 
 const space = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-heading",
+  display: 'swap', // Explicitly set font-display to swap
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap', // Explicitly set font-display to swap
 });
 
 export const metadata: Metadata = {

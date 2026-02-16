@@ -2,21 +2,21 @@
 
 
 import AboutSection from "@/components/AboutSection";
-import Contact from "@/components/Contact";
 import ProjectSection from "@/components/projectSection";
 import HeroSection from "@/components/HeroSection";
-import SocialMedia from "@/components/SocialMedia";
 import EducationSkill from "@/components/educationskill";
+import dynamic from "next/dynamic"; // Import dynamic
 
-
-
-
+const DynamicContact = dynamic(() => import("@/components/Contact"), {
+  ssr: false, // Assuming it has client-side interactivity like form handling
+  loading: () => <p className="text-center text-white py-8">Loading contact form...</p>, // Optional: Add a loading component
+});
 
 
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen text-white font-sans">
+    <main className="flex flex-col min-h-screen text-white">
 
       {/*  Hero Section with Particles */}
       <HeroSection
@@ -33,10 +33,10 @@ export default function Home() {
       <ProjectSection />
       <EducationSkill />
 
-      <Contact />
-      <SocialMedia />
+      <DynamicContact />
 
-      
+
+
     </main>
   );
 }

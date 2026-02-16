@@ -50,7 +50,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                     className={clsx(
                         "font-body mt-6 max-w-2xl",
                         align === "center" && "mx-auto",
-                        aqua ? "text-gray-300" : "text-gray-400"
+                        aqua ? "text-gray-300" : "text-barberry"
                     )}
                 >
                     {subtitle}

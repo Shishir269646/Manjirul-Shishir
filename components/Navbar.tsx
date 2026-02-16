@@ -1,16 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
+import { ChunkyShadowButton } from "@/components/ui/Buton"; // Import ChunkyShadowButton
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import Image from "next/image"; // Import Image component
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname(); // Keep pathname for future reference if needed, but not for active hash
+  // Removed: const [currentHash, setCurrentHash] = useState("");
 
   const navItems = [
     { name: "About", href: "#about" },
@@ -28,7 +30,14 @@ export function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
-  const smoothScrollTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  // Removed useEffect for currentHash
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     setCurrentHash(window.location.hash);
+  //   }
+  // }, []);
+
+  const smoothScrollTo = (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, href: string) => {
     event.preventDefault();
     const targetId = href.substring(1); // Remove the '#'
     const targetElement = document.getElementById(targetId);
@@ -40,39 +49,48 @@ export function Navbar() {
       });
       // Close mobile menu after clicking a link
       setIsOpen(false);
+      // Removed: window.history.pushState(null, '', href);
+      // Removed: setCurrentHash(href);
     }
   };
 
 
   return (
-    <nav className="bg-white/90 backdrop-blur-sm sticky top-0 z-50 w-full p-4 border-b border-gray-200">
+    <nav className="bg-white/90 backdrop-blur-md sticky top-0 z-50 w-full p-4 border-b border-gray-200">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-cyan-400 bg-clip-text text-transparent">
-          Manjirul Shishir
+        <Link href="/" className="flex items-center space-x-2">
+          <Image src="/images/logo.png" alt="Manjirul Shishir Logo" width={60} height={60} />
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} onClick={(e) => smoothScrollTo(e, item.href)}>
-              <Button
-                variant="ghost"
-                className={clsx(
-                  "text-base font-medium transition-colors hover:text-cyan-400",
-                  // Check if pathname is current path or if hash matches
-                  pathname === item.href || (pathname === '/' && window.location.hash === item.href) ? "text-cyan-400" : "text-black"
-                )}
+            item.name === "Contact" ? (
+              <ChunkyShadowButton
+                key={item.name}
+                onClick={(e) => smoothScrollTo(e, item.href)}
               >
                 {item.name}
-              </Button>
-            </Link>
+              </ChunkyShadowButton>
+            ) : (
+              <Link key={item.name} href={item.href} onClick={(e) => smoothScrollTo(e, item.href)}>
+                <Button
+                  variant="ghost"
+                  className={clsx(
+                    "text-base font-medium transition-colors hover:text-cyan-400",
+                    // Active state highlighting removed, use default text-black
+                    "text-black"
+                  )}
+                >
+                  {item.name}
+                </Button>
+              </Link>
+            )
           ))}
-          <ModeToggle />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
-          <ModeToggle />
           <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -87,20 +105,30 @@ export function Navbar() {
         )}
       >
         {navItems.map((item) => (
-          <Link key={item.name} href={item.href} onClick={(e) => smoothScrollTo(e, item.href)}>
-            <Button
-              variant="ghost"
-              className={clsx(
-                "text-lg font-medium transition-colors hover:text-cyan-400",
-                // Check if pathname is current path or if hash matches
-                pathname === item.href || (pathname === '/' && window.location.hash === item.href) ? "text-cyan-400" : "text-black"
-              )}
-            >
-              {item.name}
-            </Button>
-          </Link>
+            item.name === "Contact" ? (
+              <ChunkyShadowButton
+                key={item.name}
+                onClick={(e) => smoothScrollTo(e, item.href)}
+              >
+                {item.name}
+              </ChunkyShadowButton>
+            ) : (
+              <Link key={item.name} href={item.href} onClick={(e) => smoothScrollTo(e, item.href)}>
+                <Button
+                  variant="ghost"
+                  className={clsx(
+                    "text-lg font-medium transition-colors hover:text-cyan-400",
+                    // Active state highlighting removed, use default text-black
+                    "text-black"
+                  )}
+                >
+                  {item.name}
+                </Button>
+              </Link>
+            )
         ))}
       </div>
     </nav>
   );
 }
+

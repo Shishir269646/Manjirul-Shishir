@@ -1,8 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react"; // Import useRef and useEffect
 import GlassmorphicProjectCard from "./glassmorphic-project-card";
 import SectionHeader from "./SectionHeader";
+import gsap from 'gsap'; // Import GSAP
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
+
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
 
 interface Project {
     imageUrl: string;
@@ -99,23 +103,68 @@ const myProjects: Project[] = [
 ];
 
 const ProjectSection: React.FC = () => {
+    const sectionRef = useRef(null);
+    const headerRef = useRef(null);
+    const projectsGridRef = useRef(null);
+
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            // Animation for SectionHeader
+            gsap.fromTo(headerRef.current,
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top center+=100", // Start animation when top of section is 100px above center of viewport
+                        toggleActions: "play none none none",
+                    }
+                }
+            );
+
+            // Staggered animation for project cards
+            gsap.fromTo(gsap.utils.toArray(projectsGridRef.current.children),
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    stagger: 0.1, // Stagger the animation of each card
+                    scrollTrigger: {
+                        trigger: projectsGridRef.current,
+                        start: "top bottom-=100", // Start animation when top of grid enters viewport, slightly delayed
+                        toggleActions: "play none none none",
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="project" className="relative overflow-hidden">
+        <section id="project" ref={sectionRef} className="relative  px-4 sm:px-6 lg:px-8 overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-AquaDeep" />
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply blur-3xl opacity-50 animate-blob" />
 
             {/* Content */}
             <div className="relative z-10 mx-auto">
-                <SectionHeader
-                    title="Projects"
-                    subtitle="Showcasing my latest work and innovations."
-                    align="center"
-                    aqua={false}
-                />
+                <div ref={headerRef}> {/* Wrap SectionHeader in a div with ref */}
+                    <SectionHeader
+                        title="Projects"
+                        subtitle="Showcasing my latest work and innovations."
+                        align="center"
+                        aqua={false}
+                    />
+                </div>
 
                 {/* Responsive Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
+                <div ref={projectsGridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
                     {myProjects.map((project, index) => (
                         <GlassmorphicProjectCard key={index} {...project} />
                     ))}

@@ -1,8 +1,12 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react'; // Import useRef and useEffect
 import Image from 'next/image';
 import SectionHeader from './SectionHeader';
+import gsap from 'gsap'; // Import GSAP
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
+
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
 
 interface InfoItemProps {
     label: string;
@@ -17,6 +21,68 @@ const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
 );
 
 const AboutSection = () => {
+    // Refs for animation targets
+    const sectionRef = useRef(null);
+    const imageWrapperRef = useRef(null);
+    const contentRef = useRef(null);
+    const decorativeTextRef = useRef(null);
+
+    // GSAP Animation
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            // Animation for the image wrapper (left side)
+            gsap.fromTo(imageWrapperRef.current,
+                { x: -100, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top center", // When the top of the section hits the center of the viewport
+                        toggleActions: "play none none none",
+                    }
+                }
+            );
+
+            // Animation for the right content
+            gsap.fromTo(contentRef.current,
+                { x: 100, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    delay: 0.2, // Slightly delay content animation
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top center",
+                        toggleActions: "play none none none",
+                    }
+                }
+            );
+
+            // Animation for the decorative text
+            gsap.fromTo(decorativeTextRef.current,
+                { opacity: 0, scale: 0.8 },
+                {
+                    opacity: 0.1, // Final opacity as defined in CSS
+                    scale: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top center",
+                        toggleActions: "play none none none",
+                    }
+                }
+            );
+        }, sectionRef); // Scope animations to the section
+
+        return () => ctx.revert(); // Cleanup GSAP animations
+    }, []);
+
     // Static content properties
     const person = {
         name: "Manjirul Islam Shishir",
@@ -30,7 +96,7 @@ const AboutSection = () => {
 
     // Component Rendering
     return (
-        <section id="about" className="min-h-screen bg-background text-foreground font-inter theme-red">
+        <section id="about" ref={sectionRef} className="min-h-screen  px-4 sm:px-6 lg:px-8 bg-background text-foreground font-inter theme-red">
             <div className="overflow-hidden">
                 <SectionHeader
                     title="About Me"
@@ -44,7 +110,7 @@ const AboutSection = () => {
 
                             {/* ===== Left Image Section (w-full / w-1/2 on md+) - Adjusted left padding to prevent clipping ===== */}
                             {/* lg:pl-[100px] provides enough horizontal space to accommodate the negatively positioned elements (like the spinner at left-[-75px]) */}
-                            <div className="w-full lg:w-1/2 px-3 lg:pl-[100px]">
+                            <div ref={imageWrapperRef} className="w-full lg:w-1/2 px-3 lg:pl-[100px]">
                                 <div className="relative mb-[90px]">
                                     <div className="relative z-10">
 
@@ -97,7 +163,7 @@ const AboutSection = () => {
                             </div>
 
                             {/* ===== Right Content Section (w-full / w-1/2 on md+) ===== */}
-                            <div className="w-full lg:w-1/2 px-3">
+                            <div ref={contentRef} className="w-full lg:w-1/2 px-3">
                                 <div className="relative mb-[50px]">
                                     <div>
                                         <div className="title">
@@ -168,6 +234,7 @@ const AboutSection = () => {
 
                     {/* Decorative Elements (Vertical Text & Floating Icon) */}
                     <div
+                        ref={decorativeTextRef}
                         className="absolute hidden md:inline-block text-[200px] leading-none bottom-40 right-[68%] opacity-10 font-extrabold text-AquaDeep dark:text-gray-700"
                         style={{ transform: 'matrix(0, -1, 1, 0, 0, 0)' }}
                     >

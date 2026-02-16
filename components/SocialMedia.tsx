@@ -17,12 +17,10 @@ interface SocialIcon {
 }
 
 const socialIcons: SocialIcon[] = [
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'Twitter', icon: Twitter, href: '#' },
-    { name: 'Youtube', icon: Youtube, href: '#' },
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
-    { name: 'Github', icon: Github, href: '#' },
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/mjshishir99' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/mjshishir2696' },
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/manjirulislamshishir' },
+    { name: 'Github', icon: Github, href: 'https://github.com/Shishir269646' },
 ];
 
 function SocialMedia() {
