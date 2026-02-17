@@ -142,12 +142,12 @@ const AboutSection = () => {
 
                                             {/* Download CV Spinner */}
                                             <div className="absolute -left-1 -bottom-14 z-20">
-                                                <Image
+                                                <span
                                                     className="rotate-animation inline-block w-32 h-32"
-                                                    src="/images/cv-spinner.png" // Assuming you'll add this image to public/images
-                                                    alt="download background"
-                                                    width={128} // Corresponds to w-32 (128px)
-                                                    height={128} // Corresponds to h-32 (128px)
+                                                     // Assuming you'll add this image to public/images
+                                                    
+                                                     // Corresponds to w-32 (128px)
+                                                     // Corresponds to h-32 (128px)
                                                 />
                                                 <a
                                                     href="#"
@@ -212,8 +212,9 @@ const AboutSection = () => {
                                     >
                                         <div className="pt-3 pr-8">
                                             <Image
-                                                src="/images/signature.png" // Assuming you'll add this image to public/images
+                                                src="/images/signature.jpg" // Assuming you'll add this image to public/images
                                                 alt="signature"
+                                                priority
                                                 width={150}
                                                 height={60}
                                             />

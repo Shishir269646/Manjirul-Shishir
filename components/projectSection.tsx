@@ -19,8 +19,7 @@ interface Project {
 
 const myProjects: Project[] = [
     {
-        imageUrl:
-            "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+        imageUrl: "/images/BEHAVEIQ.png",
         title: "BEHAVEIQ - AI-Powered Website Personalization Platform",
         description: "BEHAVEIQ is a real-time website personalization platform that uses AI to transform how you understand and engage with your visitors. Unlike traditional analytics that just tell you what happened, BEHAVEIQ predicts what will happen and automatically takes action.",
         techStack: ["Next.js", "Node.js 16+", "ShadcnUI", "TypeScript", "MongoDB", "Redis", "AWS", "Python", "Google Gemini", "OpenAI API"],
@@ -105,42 +104,43 @@ const myProjects: Project[] = [
 const ProjectSection: React.FC = () => {
     const sectionRef = useRef(null);
     const headerRef = useRef(null);
-    const projectsGridRef = useRef(null);
-
-    useEffect(() => {
-        let ctx = gsap.context(() => {
-            // Animation for SectionHeader
-            gsap.fromTo(headerRef.current,
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top center+=100", // Start animation when top of section is 100px above center of viewport
-                        toggleActions: "play none none none",
+        const projectsGridRef = useRef<HTMLDivElement>(null); // Specify type
+        useEffect(() => {
+            let ctx = gsap.context(() => {
+                // Animation for SectionHeader
+                gsap.fromTo(headerRef.current,
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top center+=100", // Start animation when top of section is 100px above center of viewport
+                            toggleActions: "play none none none",
+                        }
                     }
+                );
+    
+                // Staggered animation for project cards
+                if (projectsGridRef.current) { // Add null check
+                    gsap.fromTo(gsap.utils.toArray(projectsGridRef.current.children),
+                        { y: 50, opacity: 0 },
+                        {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            stagger: 0.1, // Stagger the animation of each card
+                            scrollTrigger: {
+                                trigger: projectsGridRef.current,
+                                start: "top bottom-=100", // Start animation when top of grid enters viewport, slightly delayed
+                                toggleActions: "play none none none",
+                            }
+                        }
+                    );
                 }
-            );
-
-            // Staggered animation for project cards
-            gsap.fromTo(gsap.utils.toArray(projectsGridRef.current.children),
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    stagger: 0.1, // Stagger the animation of each card
-                    scrollTrigger: {
-                        trigger: projectsGridRef.current,
-                        start: "top bottom-=100", // Start animation when top of grid enters viewport, slightly delayed
-                        toggleActions: "play none none none",
-                    }
-                }
-            );
         }, sectionRef);
 
         return () => ctx.revert();

@@ -272,7 +272,7 @@ const Contact = () => {
                                     </div>
                                 )}
                                 <div className="text-end">
-                                    <ChunkyShadowButton type="submit" disabled={status === "loading"}>
+                                    <ChunkyShadowButton type="submit" disabled={status === "loading"} onClick={() => {}}>
                                         {status === "loading" ? "Sending..." : "Send Message"}
                                     </ChunkyShadowButton>
                                 </div>

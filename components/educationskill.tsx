@@ -47,7 +47,7 @@ const skills: Skill[] = [
 const EducationSkill: React.FC = () => {
     const sectionRef = useRef(null);
     const headerRef = useRef(null);
-    const skillsGridRef = useRef(null);
+    const skillsGridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -68,22 +68,24 @@ const EducationSkill: React.FC = () => {
             );
 
             // Staggered animation for SkillCircle components
-            gsap.fromTo(gsap.utils.toArray(skillsGridRef.current.children),
-                { y: 50, opacity: 0, scale: 0.8 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    stagger: 0.05, // Stagger the animation of each skill circle
-                    scrollTrigger: {
-                        trigger: skillsGridRef.current,
-                        start: "top bottom-=100",
-                        toggleActions: "play none none none",
+            if (skillsGridRef.current) {
+                gsap.fromTo(gsap.utils.toArray(skillsGridRef.current.children),
+                    { y: 50, opacity: 0, scale: 0.8 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: "power3.out",
+                        stagger: 0.05, // Stagger the animation of each skill circle
+                        scrollTrigger: {
+                            trigger: skillsGridRef.current,
+                            start: "top bottom-=100",
+                            toggleActions: "play none none none",
+                        }
                     }
-                }
-            );
+                );
+            }
         }, sectionRef);
 
         return () => ctx.revert();
