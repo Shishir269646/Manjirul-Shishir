@@ -118,7 +118,7 @@ const AboutSection = () => {
                                         <div
                                             className="relative inline-block pl-[50px] transition duration-500 rounded-xl overflow-visible 
                                                        before:absolute before:content-[''] before:w-[45px] before:h-[64px] before:bg-AquaDeep before:right-[55px] before:bottom-[-32px] before:z-20 
-                                                       after:absolute after:content-[''] after:bg-white dark:after:bg-gray-800 after:w-[65px] after:h-[65px] after:right-[-9%] after:top-[137px] after:rotate-[42deg] after:z-10"
+                                                       after:absolute after:content-[''] after:bg-white after:w-[65px] after:h-[65px] after:right-[-9%] after:top-[137px] after:rotate-[42deg] after:z-10"
                                         >
                                             <div className="relative z-10">
                                                 <Image
@@ -132,12 +132,12 @@ const AboutSection = () => {
 
                                             {/* Decorative Shape 1 (Red Border) */}
                                             <div
-                                                className="absolute w-[133px] h-[134px] border-4 border-AquaDeep dark:border-gray-700 right-[-25px] top-[-25px]"
+                                                className="absolute w-[133px] h-[134px] border-4 border-AquaDeep right-[-25px] top-[-25px]"
                                             ></div>
 
                                             {/* Decorative Shape 2 (Solid Red Box) */}
                                             <div
-                                                className="absolute bg-AquaDeep dark:bg-gray-700 w-[91px] h-[91px] top-[70px] left-[-12px] z-10 rounded-lg"
+                                                className="absolute bg-AquaDeep w-[91px] h-[91px] top-[70px] left-[-12px] z-10 rounded-lg"
                                             ></div>
 
                                             {/* Download CV Spinner */}
@@ -151,7 +151,7 @@ const AboutSection = () => {
                                                 />
                                                 <a
                                                     href="#"
-                                                    className="absolute w-full h-full inset-0 transition duration-500 rounded-full bg-AquaDeep dark:bg-gray-700"
+                                                    className="absolute w-full h-full inset-0 transition duration-500 rounded-full bg-AquaDeep"
                                                     aria-label="Download CV"
                                                 >
                                                     <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -169,13 +169,13 @@ const AboutSection = () => {
                                         <div className="title">
 
 
-                                            <h2 className="mb-[30px] text-4xl font-bold text-AquaDeep dark:text-foreground">
+                                            <h2 className="mb-[30px] text-4xl font-bold text-AquaDeep">
                                                 I’m a Full-Stack Developer specializing in Next.js 15 and Tailwind CSS 4.
                                             </h2>
                                         </div>
                                     </div>
 
-                                    <p className="mb-6 text-AquaDeep dark:text-foreground leading-relaxed">
+                                    <p className="mb-6 text-AquaDeep leading-relaxed">
                                         Hi, I’m Manjirul Islam Shishir, a Full-Stack Developer driven by performance and innovation. While the web moves fast, I move faster—specializing in the latest iterations of Next.js 15 and Tailwind CSS 4.
 
                                         I don’t just build websites; I build digital experiences. From developing an AI-powered personalization SDK (BehaveIQ) to architecting a Headless CMS (Headly), my focus is always on scalability, security, and speed. I bridge the gap between complex backend logic and pixel-perfect frontend aesthetics.
@@ -186,7 +186,7 @@ const AboutSection = () => {
 
                                     {/* Info Wrapper */}
                                     <div
-                                        className="border-t border-b border-gray-200 dark:border-gray-700 pt-6 pb-5 mt-6"
+                                        className="border-t border-b border-gray-200 pt-6 pb-5 mt-6"
                                     >
                                         <div className="flex flex-wrap -mx-3">
                                             <div className="w-full sm:w-1/2 px-3">
@@ -223,7 +223,7 @@ const AboutSection = () => {
                                             <h6 className="uppercase pr-1 mb-0 font-bold text-lg inline-block text-foreground">
                                                 {person.name}
                                             </h6>
-                                            <span className="text-AquaDeep dark:text-gray-400 text-sm block">
+                                            <span className="text-AquaDeep text-sm block">
                                                 {person.occupation}, {person.company}
                                             </span>
                                         </div>
@@ -236,7 +236,7 @@ const AboutSection = () => {
                     {/* Decorative Elements (Vertical Text & Floating Icon) */}
                     <div
                         ref={decorativeTextRef}
-                        className="absolute hidden md:inline-block text-[200px] leading-none bottom-40 right-[68%] opacity-10 font-extrabold text-AquaDeep dark:text-gray-700"
+                        className="absolute hidden md:inline-block text-[200px] leading-none bottom-40 right-[68%] opacity-10 font-extrabold text-AquaDeep"
                         style={{ transform: 'matrix(0, -1, 1, 0, 0, 0)' }}
                     >
                         <span className="inline-block">Manjirul</span>

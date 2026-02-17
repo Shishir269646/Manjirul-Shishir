@@ -117,7 +117,7 @@ export function ZigzagWaveTimeline({ data = SAMPLE }: { data?: TimelineItem[] })
             <div className="relative">
                 {/* SVG Wave (decorative) */}
                 <svg viewBox="0 0 1200 200" className="w-full h-40 md:h-52 overflow-visible">
-                    <path className="zw-path stroke-emerald-400/80 dark:stroke-emerald-300/70" d="M0,100 C200,0 400,200 600,100 C800,0 1000,200 1200,100" fill="none" strokeWidth={3} strokeLinecap="round" />
+                    <path className="zw-path stroke-emerald-400/80" d="M0,100 C200,0 400,200 600,100 C800,0 1000,200 1200,100" fill="none" strokeWidth={3} strokeLinecap="round" />
                 </svg>
 
                 <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2">
